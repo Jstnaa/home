@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:e_commerce/constants/constants.dart';
 import 'package:e_commerce/firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
 import 'package:e_commerce/screens/sign_up/sign_up.dart';
@@ -24,7 +26,8 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
+      body: SingleChildScrollView(
+      child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +98,8 @@ class _LoginState extends State<Login> {
             Center(
               child: CupertinoButton(
             onPressed: () {
-              Routes.instance.push(widget: const Signup(), context: context);
+              Routes.instance
+              .push(widget: const Signup(), context: context);
             },
             child: const Text(
               "Create an account",
@@ -106,6 +110,6 @@ class _LoginState extends State<Login> {
           ],
         ),
       ),  
-    );
+    ));
   }
 }

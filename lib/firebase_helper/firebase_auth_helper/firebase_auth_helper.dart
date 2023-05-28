@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:e_commerce/constants/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -23,5 +25,19 @@ class FirebaseAuthHelper {
   }
 
 
+Future<bool> signUp(
+    String email, String password, BuildContext context) async {
+     try {
+      showLoaderDialog(context);
+      await _auth.createUserWithEmailAndPassword(
+        email: email, password: password);
+      Navigator.of(context).pop();
+      return true;
+     } on FirebaseAuthException catch (error) {
+      Navigator.of(context).pop();
+      showMessage(error.code.toString());
+      return false;
+     }
+  }
 
 }

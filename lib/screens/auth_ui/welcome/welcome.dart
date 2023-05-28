@@ -6,6 +6,8 @@ import 'package:e_commerce/widgets/top_tiles/top_tiles.dart';
 import 'package:e_commerce/constants/routes.dart';
 import 'package:e_commerce/screens/auth_ui/login/login.dart';
 
+import '../../sign_up/sign_up.dart';
+
 
 class Welcome extends StatelessWidget {
   const Welcome({super.key});
@@ -63,7 +65,9 @@ class Welcome extends StatelessWidget {
               height: 18.0,
             ),
             PrimaryButton(
-               title: "Sign Up",onPressed: (){},
+               title: "Sign Up",onPressed: (){
+                 Routes.instance.push(widget: const Signup(), context: context);
+               },
                ), 
         ],
       ),

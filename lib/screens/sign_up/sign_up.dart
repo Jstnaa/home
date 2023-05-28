@@ -1,9 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:e_commerce/constants/routes.dart';
 import 'package:e_commerce/screens/home/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce/widgets/top_tiles/top_tiles.dart';
 import 'package:e_commerce/widgets/primarybutton/primary_button.dart';
+
+import '../../constants/constants.dart';
+import '../../firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
 
 
 class Signup extends StatefulWidget {
@@ -15,6 +20,10 @@ class Signup extends StatefulWidget {
 
 class _SignupState extends State<Signup> {
   bool isShowPassword = true;
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController phone = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +39,7 @@ class _SignupState extends State<Signup> {
               height: 46.0,
             ),
           TextFormField(
+            controller: name,
             decoration: const InputDecoration(
               hintText: "Name",
               prefixIcon: Icon(
@@ -41,6 +51,7 @@ class _SignupState extends State<Signup> {
             height: 12.0,
           ),
           TextFormField(
+            controller: email,
             keyboardType: TextInputType.emailAddress,
             decoration: const InputDecoration(
               hintText: "E-mail",
@@ -53,6 +64,7 @@ class _SignupState extends State<Signup> {
             height: 12.0,
           ),
           TextFormField(
+            controller: phone,
             keyboardType: TextInputType.phone,
             decoration: const InputDecoration(
               hintText: "Phone",
@@ -65,6 +77,7 @@ class _SignupState extends State<Signup> {
             height: 12.0,
           ),
           TextFormField(
+            controller: password,
             obscureText: isShowPassword,
             decoration:  InputDecoration(
               hintText: "Password",
@@ -90,8 +103,17 @@ class _SignupState extends State<Signup> {
           ),
          PrimaryButton(
           title: "Create an Account",
-          onPressed: () {
-            Routes.instance.pushAndRemoveUntil(widget: Home(), context: context);
+          onPressed: () async{
+            bool isValidated = signUpValidation(
+              email.text, password.text, name.text, phone.text);
+          if(isValidated) {
+          bool isLogined = await FirebaseAuthHelper.instance
+                .signUp(email.text, password.text, context);
+                if(isLogined){
+                  Routes.instance.pushAndRemoveUntil(
+                    widget: const Home(), context: context);
+              }
+             }
           },
           ),
           const SizedBox(
