@@ -1,9 +1,13 @@
+import 'package:e_commerce/constants/constants.dart';
+import 'package:e_commerce/firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
 import 'package:e_commerce/screens/sign_up/sign_up.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce/widgets/top_tiles/top_tiles.dart';
 import 'package:e_commerce/widgets/primarybutton/primary_button.dart';
 import 'package:e_commerce/constants/routes.dart';
+
+import '../../home/home.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -13,6 +17,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+
   bool isShowPassword = true;
   @override
   Widget build(BuildContext context) {
@@ -64,7 +71,17 @@ class _LoginState extends State<Login> {
           ),
          PrimaryButton(
           title: "Login",
-          onPressed: () {},
+          onPressed: () async { 
+          bool isValidated =   loginValidation(email.text, password.text);
+          if(isValidated) {
+          bool isLogined = await FirebaseAuthHelper.instance
+                .login(email.text, password.text, context);
+                if(isLogined){
+                  Routes.instance.pushAndRemoveUntil(
+                    widget: const Home(), context: context);
+              }
+             }
+           },
           ),
           const SizedBox(
             height: 24.0,

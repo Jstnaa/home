@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "615216659452",
+    "project_id": "cjf-computer-shot",
+    "storage_bucket": "cjf-computer-shot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615216659452:android:18ff24dc2ada5783a21079",
+        "android_client_info": {
+          "package_name": "com.example.e_commerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDURK4H_vm_qf50aJrckaGuGdaQTmxNAc8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

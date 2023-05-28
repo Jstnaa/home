@@ -8,8 +8,10 @@ class Home extends StatelessWidget {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("Iloveyou!!"),
+        children: const [
+          Center(
+            child: Text(
+              "Iloveyou!!")),
         ],
       ),
     );
