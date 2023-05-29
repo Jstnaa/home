@@ -1,4 +1,6 @@
+import 'package:e_commerce/firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
 import 'package:e_commerce/screens/auth_ui/welcome/welcome.dart';
+import 'package:e_commerce/screens/home/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce/constants/theme.dart';
@@ -24,7 +26,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'CJF ComputerShop',
       theme: themeData,
-      home:  const Welcome(),
+      home:  StreamBuilder(
+        stream: FirebaseAuthHelper.instance.getAuthChange,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return const Home();
+          }
+          return const Welcome();
+        }
+      ),
     );
   }
 }

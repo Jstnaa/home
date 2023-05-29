@@ -1,5 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';

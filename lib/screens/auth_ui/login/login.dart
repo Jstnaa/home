@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:e_commerce/constants/constants.dart';
 import 'package:e_commerce/firebase_helper/firebase_auth_helper/firebase_auth_helper.dart';
 import 'package:e_commerce/screens/sign_up/sign_up.dart';
